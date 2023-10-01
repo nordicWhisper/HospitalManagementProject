@@ -26,7 +26,7 @@ namespace WinFormsApp1
         }
 
 
-        public bool TryToLogin(string userName, string userPassword)
+        public bool UserLogin(string userName, string userPassword)
         {
             try
             {
@@ -61,6 +61,7 @@ namespace WinFormsApp1
             }
             catch (MySqlException ex)
             {
+                MessageBox.Show("Błąd połączenia z bazą danych " + ex);
                 return false;
             }
             finally
@@ -68,6 +69,5 @@ namespace WinFormsApp1
                 connection.Close();
             }
         }
-
     }
 }
