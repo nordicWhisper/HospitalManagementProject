@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            button9 = new Button();
+            button8 = new Button();
+            button7 = new Button();
+            button6 = new Button();
+            button5 = new Button();
+            button4 = new Button();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
             panel2 = new Panel();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
-            button7 = new Button();
-            button8 = new Button();
-            button9 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -57,6 +57,60 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(213, 682);
             panel1.TabIndex = 0;
+            // 
+            // button9
+            // 
+            button9.Location = new Point(13, 444);
+            button9.Name = "button9";
+            button9.Size = new Size(197, 48);
+            button9.TabIndex = 8;
+            button9.Text = "EXIT";
+            button9.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            button8.Location = new Point(13, 390);
+            button8.Name = "button8";
+            button8.Size = new Size(197, 48);
+            button8.TabIndex = 7;
+            button8.Text = "LOG OUT";
+            button8.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            button7.Location = new Point(13, 336);
+            button7.Name = "button7";
+            button7.Size = new Size(197, 48);
+            button7.TabIndex = 6;
+            button7.Text = "ADMIN / REPORTS";
+            button7.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            button6.Location = new Point(13, 282);
+            button6.Name = "button6";
+            button6.Size = new Size(197, 48);
+            button6.TabIndex = 5;
+            button6.Text = "PAYMENT";
+            button6.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(13, 228);
+            button5.Name = "button5";
+            button5.Size = new Size(197, 48);
+            button5.TabIndex = 4;
+            button5.Text = "BILL";
+            button5.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(13, 174);
+            button4.Name = "button4";
+            button4.Size = new Size(197, 48);
+            button4.TabIndex = 3;
+            button4.Text = "ADD PATIENT";
+            button4.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
@@ -96,60 +150,6 @@
             panel2.Size = new Size(1046, 682);
             panel2.TabIndex = 1;
             // 
-            // button4
-            // 
-            button4.Location = new Point(13, 174);
-            button4.Name = "button4";
-            button4.Size = new Size(197, 48);
-            button4.TabIndex = 3;
-            button4.Text = "ADD PATIENT";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(13, 228);
-            button5.Name = "button5";
-            button5.Size = new Size(197, 48);
-            button5.TabIndex = 4;
-            button5.Text = "BILL";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            button6.Location = new Point(13, 282);
-            button6.Name = "button6";
-            button6.Size = new Size(197, 48);
-            button6.TabIndex = 5;
-            button6.Text = "PAYMENT";
-            button6.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            button7.Location = new Point(13, 336);
-            button7.Name = "button7";
-            button7.Size = new Size(197, 48);
-            button7.TabIndex = 6;
-            button7.Text = "ADMIN / REPORTS";
-            button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            button8.Location = new Point(13, 390);
-            button8.Name = "button8";
-            button8.Size = new Size(197, 48);
-            button8.TabIndex = 7;
-            button8.Text = "LOG OUT";
-            button8.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            button9.Location = new Point(13, 444);
-            button9.Name = "button9";
-            button9.Size = new Size(197, 48);
-            button9.TabIndex = 8;
-            button9.Text = "EXIT";
-            button9.UseVisualStyleBackColor = true;
-            // 
             // DashboardForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -160,6 +160,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "DashboardForm";
             Text = "DashboardForm";
+            Load += DashboardForm_Load;
             panel1.ResumeLayout(false);
             ResumeLayout(false);
         }

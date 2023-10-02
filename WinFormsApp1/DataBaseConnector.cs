@@ -16,7 +16,6 @@ namespace WinFormsApp1
         private string connectionString = "Server=localhost;Database=hospital;Uid=root;Pwd=root1;";
         private MySqlConnection connection;
 
-        // konstruktor
         public DataBaseConnector()
         {
             InitializeDatabaseConnection();
@@ -173,6 +172,39 @@ namespace WinFormsApp1
                     {
                         MessageBox.Show("All data must be write.");
                     }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public void EditRoomDetailDELETE(string roomType)
+        {
+            try
+            {
+                connection.Open();
+
+                string query = "DELETE FROM rooms WHERE RoomType=@RoomType;";
+
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                command.Parameters.AddWithValue("@RoomType", roomType);
+
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Data has been update.");
+                }
+                else
+                {
+                    MessageBox.Show("All data must be write.");
+                }
             }
             catch (Exception ex)
             {

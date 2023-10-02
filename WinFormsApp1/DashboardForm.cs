@@ -17,6 +17,22 @@ namespace WinFormsApp1
             InitializeComponent();
         }
 
+        private void DashboardForm_Load(object sender, EventArgs e)
+        {
+            panel2.Controls.Clear();
+
+            Home home = new Home();
+            home.TopLevel = false;
+            panel2.Controls.Add(home);
+
+            home.Size = panel2.Size;
+            home.Location = new Point(0, 0);
+
+            home.Show();
+        }
+
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             panel2.Controls.Clear();
@@ -58,5 +74,7 @@ namespace WinFormsApp1
 
             addDoctor.Show();
         }
+
+
     }
 }
