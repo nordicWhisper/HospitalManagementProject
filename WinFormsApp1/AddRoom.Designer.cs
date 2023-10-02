@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
@@ -40,21 +41,26 @@
             label3 = new Label();
             label2 = new Label();
             tabPage2 = new TabPage();
+            dataGridView1 = new DataGridView();
             tabPage3 = new TabPage();
             groupBox2 = new GroupBox();
+            comboBox1 = new ComboBox();
+            button3 = new Button();
             button2 = new Button();
             textBox4 = new TextBox();
             textBox5 = new TextBox();
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
-            button3 = new Button();
-            comboBox1 = new ComboBox();
+            dataBaseConnectorBindingSource = new BindingSource(components);
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             groupBox1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tabPage3.SuspendLayout();
             groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataBaseConnectorBindingSource).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -67,7 +73,6 @@
             label1.Size = new Size(221, 32);
             label1.TabIndex = 0;
             label1.Text = "ADD ROOM DETAIL";
-            label1.Click += label1_Click;
             // 
             // tabControl1
             // 
@@ -117,6 +122,7 @@
             button1.TabIndex = 6;
             button1.Text = "ADD";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // textBox3
             // 
@@ -168,6 +174,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(dataGridView1);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -175,6 +182,18 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Room Reports";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            dataGridView1.BackgroundColor = SystemColors.ButtonFace;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(21, 45);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(644, 256);
+            dataGridView1.TabIndex = 0;
             // 
             // tabPage3
             // 
@@ -204,6 +223,24 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "ADD Rooms Form";
             // 
+            // comboBox1
+            // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(140, 41);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(238, 23);
+            comboBox1.TabIndex = 8;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(282, 160);
+            button3.Name = "button3";
+            button3.Size = new Size(103, 24);
+            button3.TabIndex = 7;
+            button3.Text = "DELETE";
+            button3.UseVisualStyleBackColor = true;
+            // 
             // button2
             // 
             button2.Location = new Point(140, 160);
@@ -212,6 +249,7 @@
             button2.TabIndex = 6;
             button2.Text = "UPDATE";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // textBox4
             // 
@@ -254,22 +292,9 @@
             label7.TabIndex = 0;
             label7.Text = "Room Type:";
             // 
-            // button3
+            // dataBaseConnectorBindingSource
             // 
-            button3.Location = new Point(282, 160);
-            button3.Name = "button3";
-            button3.Size = new Size(103, 24);
-            button3.TabIndex = 7;
-            button3.Text = "DELETE";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(140, 41);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(238, 23);
-            comboBox1.TabIndex = 8;
+            dataBaseConnectorBindingSource.DataSource = typeof(DataBaseConnector);
             // 
             // AddRoom
             // 
@@ -281,13 +306,17 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "AddRoom";
             Text = "AddRoom";
+            Load += AddRoom_Load;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             tabPage3.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataBaseConnectorBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -316,5 +345,7 @@
         private Label label5;
         private Label label6;
         private Label label7;
+        private BindingSource dataBaseConnectorBindingSource;
+        private DataGridView dataGridView1;
     }
 }
