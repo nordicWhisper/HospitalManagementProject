@@ -36,11 +36,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 32F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.SteelBlue;
-            label1.Location = new Point(353, 29);
+            label1.Location = new Point(518, 56);
             label1.Name = "label1";
-            label1.Size = new Size(140, 59);
+            label1.Size = new Size(79, 32);
             label1.TabIndex = 0;
             label1.Text = "Home";
             // 
@@ -49,7 +49,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.SteelBlue;
-            label2.Location = new Point(203, 129);
+            label2.Location = new Point(363, 114);
             label2.Name = "label2";
             label2.Size = new Size(425, 30);
             label2.TabIndex = 1;
@@ -60,7 +60,7 @@
             panel1.BackColor = Color.LightSkyBlue;
             panel1.Location = new Point(-2, 91);
             panel1.Name = "panel1";
-            panel1.Size = new Size(804, 20);
+            panel1.Size = new Size(1394, 20);
             panel1.TabIndex = 2;
             // 
             // Home

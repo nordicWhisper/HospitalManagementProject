@@ -68,11 +68,12 @@
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(312, 9);
+            label1.ForeColor = Color.SteelBlue;
+            label1.Location = new Point(301, 21);
             label1.Name = "label1";
-            label1.Size = new Size(221, 32);
+            label1.Size = new Size(201, 32);
             label1.TabIndex = 0;
-            label1.Text = "ADD ROOM DETAIL";
+            label1.Text = "ADD Room Detail";
             // 
             // tabControl1
             // 
@@ -80,7 +81,7 @@
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
-            tabControl1.Location = new Point(47, 81);
+            tabControl1.Location = new Point(59, 70);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(692, 340);
@@ -227,7 +228,7 @@
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(140, 41);
+            comboBox1.Location = new Point(147, 41);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(238, 23);
             comboBox1.TabIndex = 8;
@@ -254,14 +255,14 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(140, 119);
+            textBox4.Location = new Point(147, 119);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(102, 23);
             textBox4.TabIndex = 5;
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(141, 81);
+            textBox5.Location = new Point(147, 81);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(102, 23);
             textBox5.TabIndex = 4;
@@ -271,27 +272,27 @@
             label5.AutoSize = true;
             label5.Location = new Point(70, 122);
             label5.Name = "label5";
-            label5.Size = new Size(64, 15);
+            label5.Size = new Size(60, 15);
             label5.TabIndex = 2;
-            label5.Text = "Rate / Day:";
+            label5.Text = "Speciality:";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Location = new Point(65, 84);
             label6.Name = "label6";
-            label6.Size = new Size(70, 15);
+            label6.Size = new Size(66, 15);
             label6.TabIndex = 1;
-            label6.Text = "Total Room:";
+            label6.Text = "Mobile No:";
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Location = new Point(65, 44);
             label7.Name = "label7";
-            label7.Size = new Size(69, 15);
+            label7.Size = new Size(81, 15);
             label7.TabIndex = 0;
-            label7.Text = "Room Type:";
+            label7.Text = "Doctor Name:";
             // 
             // dataBaseConnectorBindingSource
             // 
