@@ -5,7 +5,7 @@ namespace WinFormsApp1
 {
     public partial class Form1 : Form
     {
-       DataBaseConnector connector = new DataBaseConnector();
+        DataBaseConnector connector = new DataBaseConnector();
         public Form1()
         {
             InitializeComponent();

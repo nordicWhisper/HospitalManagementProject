@@ -44,6 +44,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.LightSteelBlue;
             panel1.Controls.Add(button9);
             panel1.Controls.Add(button8);
             panel1.Controls.Add(button7);
@@ -117,6 +118,7 @@
             button4.TabIndex = 3;
             button4.Text = "ADD PATIENT";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
@@ -153,7 +155,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = SystemColors.ControlLight;
+            panel2.BackColor = Color.LightSteelBlue;
             panel2.Location = new Point(218, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(1046, 682);

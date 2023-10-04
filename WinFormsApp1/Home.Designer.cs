@@ -38,7 +38,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.SteelBlue;
-            label1.Location = new Point(518, 56);
+            label1.Location = new Point(451, 56);
             label1.Name = "label1";
             label1.Size = new Size(79, 32);
             label1.TabIndex = 0;
@@ -49,7 +49,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.SteelBlue;
-            label2.Location = new Point(363, 114);
+            label2.Location = new Point(270, 114);
             label2.Name = "label2";
             label2.Size = new Size(425, 30);
             label2.TabIndex = 1;
@@ -67,6 +67,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.LightSteelBlue;
             ClientSize = new Size(800, 450);
             Controls.Add(panel1);
             Controls.Add(label2);

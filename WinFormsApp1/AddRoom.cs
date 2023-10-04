@@ -73,7 +73,6 @@ namespace WinFormsApp1
             {
                 MessageBox.Show("Nic nie zostało wybrane z listy ComboBox.");
             }
-
         }
 
 
@@ -179,7 +178,7 @@ namespace WinFormsApp1
                     }
                     else
                     {
-                        MessageBox.Show("All data must be write.");
+                        MessageBox.Show("Incorrect char or text.");
                     }
                 }
                 else if (rateDay != string.Empty)
@@ -200,7 +199,7 @@ namespace WinFormsApp1
                     }
                     else
                     {
-                        MessageBox.Show("All data must be write.");
+                        MessageBox.Show("Incorrect char or text.");
                     }
                 }
                 else if (totalRoom != string.Empty)
@@ -221,7 +220,7 @@ namespace WinFormsApp1
                     }
                     else
                     {
-                        MessageBox.Show("All data must be write.");
+                        MessageBox.Show("Incorrect char or text.");
                     }
                 }
             }

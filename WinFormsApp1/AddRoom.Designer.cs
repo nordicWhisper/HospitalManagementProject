@@ -89,6 +89,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.BackColor = Color.LightSteelBlue;
             tabPage1.Controls.Add(groupBox1);
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
@@ -96,7 +97,6 @@
             tabPage1.Size = new Size(684, 312);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "ADD Rooms";
-            tabPage1.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -175,6 +175,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.BackColor = Color.LightSteelBlue;
             tabPage2.Controls.Add(dataGridView1);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
@@ -182,13 +183,12 @@
             tabPage2.Size = new Size(684, 312);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Room Reports";
-            tabPage2.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            dataGridView1.BackgroundColor = SystemColors.ButtonFace;
+            dataGridView1.BackgroundColor = Color.LightSteelBlue;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(21, 45);
             dataGridView1.Name = "dataGridView1";
@@ -198,13 +198,13 @@
             // 
             // tabPage3
             // 
+            tabPage3.BackColor = Color.LightSteelBlue;
             tabPage3.Controls.Add(groupBox2);
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
             tabPage3.Size = new Size(684, 312);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Edit Room Detail";
-            tabPage3.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -270,29 +270,29 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(70, 122);
+            label5.Location = new Point(65, 122);
             label5.Name = "label5";
-            label5.Size = new Size(60, 15);
+            label5.Size = new Size(64, 15);
             label5.TabIndex = 2;
-            label5.Text = "Speciality:";
+            label5.Text = "Rate / Day:";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Location = new Point(65, 84);
             label6.Name = "label6";
-            label6.Size = new Size(66, 15);
+            label6.Size = new Size(70, 15);
             label6.TabIndex = 1;
-            label6.Text = "Mobile No:";
+            label6.Text = "Total Room:";
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Location = new Point(65, 44);
             label7.Name = "label7";
-            label7.Size = new Size(81, 15);
+            label7.Size = new Size(69, 15);
             label7.TabIndex = 0;
-            label7.Text = "Doctor Name:";
+            label7.Text = "Room Type:";
             // 
             // dataBaseConnectorBindingSource
             // 
@@ -302,6 +302,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.LightSteelBlue;
             ClientSize = new Size(800, 450);
             Controls.Add(tabControl1);
             Controls.Add(label1);

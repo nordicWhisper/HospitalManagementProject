@@ -102,6 +102,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 24.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = Color.SteelBlue;
             label3.Location = new Point(306, 66);
             label3.Name = "label3";
             label3.Size = new Size(454, 45);
@@ -112,6 +113,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.LightSteelBlue;
             ClientSize = new Size(1264, 681);
             Controls.Add(label3);
             Controls.Add(groupBox1);

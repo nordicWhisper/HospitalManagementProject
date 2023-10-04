@@ -75,6 +75,18 @@ namespace WinFormsApp1
             addDoctor.Show();
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            panel2.Controls.Clear();
 
+            AddPatient addPatient = new AddPatient();
+            addPatient.TopLevel = false;
+            panel2.Controls.Add(addPatient);
+
+            addPatient.Size = panel2.Size;
+            addPatient.Location = new Point(0, 0);
+
+            addPatient.Show();
+        }
     }
 }
