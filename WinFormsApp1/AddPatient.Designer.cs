@@ -75,9 +75,9 @@
             label1.ForeColor = Color.SteelBlue;
             label1.Location = new Point(284, 9);
             label1.Name = "label1";
-            label1.Size = new Size(211, 32);
+            label1.Size = new Size(212, 32);
             label1.TabIndex = 4;
-            label1.Text = "ADD Doctor Detail";
+            label1.Text = "ADD Patient Detail";
             // 
             // tabControl1
             // 
@@ -132,6 +132,7 @@
             button1.TabIndex = 26;
             button1.Text = "ADD Patient";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // comboBox4
             // 
@@ -397,6 +398,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "AddPatient";
             Text = "AddPatient";
+            Load += AddPatient_Load;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
