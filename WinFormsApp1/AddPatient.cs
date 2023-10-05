@@ -57,7 +57,7 @@ namespace WinFormsApp1
             HandleByDoctor = comboBox2.SelectedItem.ToString();
             RoomType = comboBox4.SelectedItem.ToString();
             EstimatedBill = textBox10.Text;
-            AddDoctors(PatientName, Gender, Age, Mobile, Address, City , Pincode, ReferByDoctor, Disease, HandleByDoctor, RoomType, EstimatedBill);
+            AddDoctors(PatientName, Gender, Age, Mobile, Address, City, Pincode, ReferByDoctor, Disease, HandleByDoctor, RoomType, EstimatedBill);
         }
 
         private void HandleByDoctorSELECT()
@@ -147,6 +147,11 @@ namespace WinFormsApp1
             {
                 connector.connection.Close();
             }
+        }
+
+        private void label22_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
