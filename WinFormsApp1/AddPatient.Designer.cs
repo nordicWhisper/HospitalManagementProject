@@ -61,6 +61,16 @@
             label2 = new Label();
             tabPage2 = new TabPage();
             panel1 = new Panel();
+            label50 = new Label();
+            label49 = new Label();
+            label48 = new Label();
+            label47 = new Label();
+            label46 = new Label();
+            label45 = new Label();
+            label44 = new Label();
+            label43 = new Label();
+            label42 = new Label();
+            label41 = new Label();
             dataGridView2 = new DataGridView();
             panel3 = new Panel();
             dataGridView1 = new DataGridView();
@@ -96,14 +106,14 @@
             label6 = new Label();
             label5 = new Label();
             tabPage3 = new TabPage();
+            dataGridView3 = new DataGridView();
             groupBox4 = new GroupBox();
+            textBox5 = new TextBox();
             label39 = new Label();
             button4 = new Button();
             button5 = new Button();
             comboBox6 = new ComboBox();
             label40 = new Label();
-            dataGridView3 = new DataGridView();
-            textBox5 = new TextBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -115,8 +125,8 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox2.SuspendLayout();
             tabPage3.SuspendLayout();
-            groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
+            groupBox4.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -435,6 +445,16 @@
             // panel1
             // 
             panel1.BackColor = Color.LemonChiffon;
+            panel1.Controls.Add(label50);
+            panel1.Controls.Add(label49);
+            panel1.Controls.Add(label48);
+            panel1.Controls.Add(label47);
+            panel1.Controls.Add(label46);
+            panel1.Controls.Add(label45);
+            panel1.Controls.Add(label44);
+            panel1.Controls.Add(label43);
+            panel1.Controls.Add(label42);
+            panel1.Controls.Add(label41);
             panel1.Controls.Add(dataGridView2);
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel2);
@@ -453,6 +473,96 @@
             panel1.Size = new Size(676, 293);
             panel1.TabIndex = 1;
             panel1.Visible = false;
+            // 
+            // label50
+            // 
+            label50.AutoSize = true;
+            label50.Location = new Point(454, 117);
+            label50.Name = "label50";
+            label50.Size = new Size(44, 15);
+            label50.TabIndex = 34;
+            label50.Text = "label50";
+            // 
+            // label49
+            // 
+            label49.AutoSize = true;
+            label49.Location = new Point(454, 89);
+            label49.Name = "label49";
+            label49.Size = new Size(44, 15);
+            label49.TabIndex = 33;
+            label49.Text = "label49";
+            // 
+            // label48
+            // 
+            label48.AutoSize = true;
+            label48.Location = new Point(454, 61);
+            label48.Name = "label48";
+            label48.Size = new Size(44, 15);
+            label48.TabIndex = 32;
+            label48.Text = "label48";
+            // 
+            // label47
+            // 
+            label47.AutoSize = true;
+            label47.Location = new Point(454, 36);
+            label47.Name = "label47";
+            label47.Size = new Size(44, 15);
+            label47.TabIndex = 31;
+            label47.Text = "label47";
+            // 
+            // label46
+            // 
+            label46.AutoSize = true;
+            label46.Location = new Point(454, 9);
+            label46.Name = "label46";
+            label46.Size = new Size(44, 15);
+            label46.TabIndex = 30;
+            label46.Text = "label46";
+            // 
+            // label45
+            // 
+            label45.AutoSize = true;
+            label45.Location = new Point(91, 117);
+            label45.Name = "label45";
+            label45.Size = new Size(44, 15);
+            label45.TabIndex = 29;
+            label45.Text = "label45";
+            // 
+            // label44
+            // 
+            label44.AutoSize = true;
+            label44.Location = new Point(91, 89);
+            label44.Name = "label44";
+            label44.Size = new Size(44, 15);
+            label44.TabIndex = 28;
+            label44.Text = "label44";
+            // 
+            // label43
+            // 
+            label43.AutoSize = true;
+            label43.Location = new Point(91, 61);
+            label43.Name = "label43";
+            label43.Size = new Size(44, 15);
+            label43.TabIndex = 27;
+            label43.Text = "label43";
+            // 
+            // label42
+            // 
+            label42.AutoSize = true;
+            label42.Location = new Point(91, 36);
+            label42.Name = "label42";
+            label42.Size = new Size(44, 15);
+            label42.TabIndex = 26;
+            label42.Text = "label42";
+            // 
+            // label41
+            // 
+            label41.AutoSize = true;
+            label41.Location = new Point(91, 9);
+            label41.Name = "label41";
+            label41.Size = new Size(44, 15);
+            label41.TabIndex = 25;
+            label41.Text = "label41";
             // 
             // dataGridView2
             // 
@@ -653,7 +763,6 @@
             label22.Size = new Size(92, 15);
             label22.TabIndex = 5;
             label22.Text = "Refer By Doctor:";
-            label22.Click += label22_Click;
             // 
             // label21
             // 
@@ -685,7 +794,7 @@
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(3, 36);
+            label18.Location = new Point(6, 36);
             label18.Name = "label18";
             label18.Size = new Size(66, 15);
             label18.TabIndex = 1;
@@ -750,6 +859,7 @@
             button2.TabIndex = 3;
             button2.Text = "SELECT";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // comboBox1
             // 
@@ -788,6 +898,15 @@
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Delete Records";
             // 
+            // dataGridView3
+            // 
+            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView3.Location = new Point(34, 99);
+            dataGridView3.Name = "dataGridView3";
+            dataGridView3.RowTemplate.Height = 25;
+            dataGridView3.Size = new Size(676, 225);
+            dataGridView3.TabIndex = 2;
+            // 
             // groupBox4
             // 
             groupBox4.Controls.Add(textBox5);
@@ -802,6 +921,13 @@
             groupBox4.TabIndex = 1;
             groupBox4.TabStop = false;
             groupBox4.Text = "Detail Patient Record";
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(452, 26);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(121, 23);
+            textBox5.TabIndex = 7;
             // 
             // label39
             // 
@@ -820,6 +946,7 @@
             button4.TabIndex = 4;
             button4.Text = "SELECT";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button5
             // 
@@ -829,6 +956,7 @@
             button5.TabIndex = 3;
             button5.Text = "SELECT";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // comboBox6
             // 
@@ -846,22 +974,6 @@
             label40.Size = new Size(82, 15);
             label40.TabIndex = 1;
             label40.Text = "Patient Name:";
-            // 
-            // dataGridView3
-            // 
-            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView3.Location = new Point(34, 99);
-            dataGridView3.Name = "dataGridView3";
-            dataGridView3.RowTemplate.Height = 25;
-            dataGridView3.Size = new Size(676, 225);
-            dataGridView3.TabIndex = 2;
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(452, 26);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(121, 23);
-            textBox5.TabIndex = 7;
             // 
             // AddPatient
             // 
@@ -891,9 +1003,9 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -976,5 +1088,15 @@
         private Button button5;
         private ComboBox comboBox6;
         private Label label40;
+        private Label label50;
+        private Label label49;
+        private Label label48;
+        private Label label47;
+        private Label label46;
+        private Label label45;
+        private Label label44;
+        private Label label43;
+        private Label label42;
+        private Label label41;
     }
 }

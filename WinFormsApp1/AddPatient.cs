@@ -40,6 +40,7 @@ namespace WinFormsApp1
         {
             HandleByDoctorSELECT();
             RoomTypeSELECT();
+            PatientNameSELECT();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -149,9 +150,150 @@ namespace WinFormsApp1
             }
         }
 
-        private void label22_Click(object sender, EventArgs e)
+        private void PatientNameSELECT()
         {
+            try
+            {
+                connector.connection.Open();
+                string query = "SELECT PatientName from patients";
+                MySqlCommand command = new MySqlCommand(query, connector.connection);
+                MySqlDataReader reader = command.ExecuteReader();
 
+                while (reader.Read())
+                {
+                    comboBox1.Items.Add(reader["PatientName"].ToString());
+                    comboBox6.Items.Add(reader["PatientName"].ToString());
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured: " + ex.Message);
+            }
+            finally
+            {
+                connector.connection.Close();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex != -1)
+            {
+                ShowPatientReports();
+            }
+            else
+            {
+                MessageBox.Show("You must choose patient name.");
+            }
+        }
+
+        private void ShowPatientReports()
+        {
+            panel1.Visible = true;
+            try
+            {
+                connector.connection.Open();
+
+                string query = "SELECT * FROM patients";
+                MySqlCommand command = new MySqlCommand(query, connector.connection);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    label41.Text = reader["PatientName"].ToString();
+                    label42.Text = reader["Mobile"].ToString();
+                    label43.Text = reader["Address"].ToString();
+                    label44.Text = reader["City"].ToString();
+                    label45.Text = reader["Pincode"].ToString();
+                    label46.Text = reader["ReferByDoctor"].ToString();
+                    label47.Text = reader["Disease"].ToString();
+                    label48.Text = reader["HandleByDoctor"].ToString();
+                    label49.Text = reader["RoomType"].ToString();
+                    label50.Text = reader["EstimatedBill"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured: " + ex.Message);
+            }
+            finally
+            {
+                connector.connection.Close();
+            }
+        }
+
+
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex != -1)
+            {
+                PatientNameSELECT__PatientName(comboBox6.Text);
+            }
+            else
+            {
+                MessageBox.Show("You must choose patient name.");
+            }
+        }
+
+        private void PatientNameSELECT__PatientName(string patientName)
+        {
+            try
+            {
+                connector.connection.Open();
+                string query = "SELECT PatientName, Mobile, Address, City, HandleByDoctor, RoomType FROM patients WHERE PatientName=@PatientName";
+                MySqlCommand command = new MySqlCommand(query, connector.connection);
+                command.Parameters.AddWithValue("@PatientName", patientName);
+
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                {
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dataGridView3.DataSource = dataTable;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured: " + ex.Message);
+            }
+            finally { connector.connection.Close(); }
+        }
+
+        private void PatientNameTextBox__MobileNo(string mobileNo)
+        {
+            try
+            {
+                connector.connection.Open();
+                string query = "SELECT PatientName, Mobile, Address, City, HandleByDoctor, RoomType FROM patients WHERE Mobile=@Mobile";
+                MySqlCommand command = new MySqlCommand(query, connector.connection);
+                command.Parameters.AddWithValue("@Mobile", mobileNo);
+
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                {
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dataGridView3.DataSource = dataTable;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured: " + ex.Message);
+            }
+            finally { connector.connection.Close(); }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if(textBox5.Text != string.Empty)
+            {
+                PatientNameTextBox__MobileNo(textBox5.Text);
+            } else
+            {
+                MessageBox.Show("You must write patient mobile phone.");
+            }
         }
     }
 }
