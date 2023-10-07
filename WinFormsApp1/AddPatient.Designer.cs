@@ -908,6 +908,7 @@
             dataGridView3.RowTemplate.Height = 25;
             dataGridView3.Size = new Size(676, 225);
             dataGridView3.TabIndex = 2;
+            dataGridView3.CellContentClick += dataGridView3_CellContentClick;
             // 
             // groupBox4
             // 

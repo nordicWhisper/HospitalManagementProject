@@ -237,6 +237,47 @@ namespace WinFormsApp1
             }
         }
 
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridView3.Columns["DeleteButton"].Index)
+            {
+
+                try
+                {
+                    connector.connection.Open();
+                    
+                    int recordIdToDelete = Convert.ToInt32(dataGridView3.Rows[e.RowIndex].Cells["PatientID"].Value);
+                    string query = "DELETE FROM patients WHERE PatientID=@PatientID;";
+
+                    DialogResult result = MessageBox.Show("Are you sure to do this?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        MySqlCommand command = new MySqlCommand(query, connector.connection);
+                        command.Parameters.AddWithValue("@PatientID", recordIdToDelete);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Data has been update.");
+                            dataGridView3.Refresh();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Incorrect char or text.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occured: " + ex.Message);
+                }
+                finally
+                {
+                    connector.connection.Close();
+                }
+            }
+        }
+
         private void PatientNameSELECT__PatientName(string patientName)
         {
             try
@@ -257,7 +298,7 @@ namespace WinFormsApp1
 
 
 
-                string query = "SELECT PatientName, Mobile, Address, City, HandleByDoctor, RoomType FROM patients WHERE PatientName=@PatientName";
+                string query = "SELECT PatientID, PatientName, Mobile, Address, City, HandleByDoctor, RoomType FROM patients WHERE PatientName=@PatientName";
                 MySqlCommand command = new MySqlCommand(query, connector.connection);
                 command.Parameters.AddWithValue("@PatientName", patientName);
 
@@ -284,7 +325,7 @@ namespace WinFormsApp1
             try
             {
                 connector.connection.Open();
-                string query = "SELECT PatientName, Mobile, Address, City, HandleByDoctor, RoomType FROM patients WHERE Mobile=@Mobile";
+                string query = "SELECT PatientID, PatientName, Mobile, Address, City, HandleByDoctor, RoomType FROM patients WHERE Mobile=@Mobile";
                 MySqlCommand command = new MySqlCommand(query, connector.connection);
                 command.Parameters.AddWithValue("@Mobile", mobileNo);
 
