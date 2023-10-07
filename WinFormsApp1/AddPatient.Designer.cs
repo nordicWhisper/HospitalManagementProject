@@ -900,8 +900,10 @@
             // 
             // dataGridView3
             // 
+            dataGridView3.AllowUserToAddRows = false;
+            dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView3.Location = new Point(34, 99);
+            dataGridView3.Location = new Point(34, 104);
             dataGridView3.Name = "dataGridView3";
             dataGridView3.RowTemplate.Height = 25;
             dataGridView3.Size = new Size(676, 225);

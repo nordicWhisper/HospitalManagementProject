@@ -227,7 +227,7 @@ namespace WinFormsApp1
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex != -1)
+            if (comboBox6.SelectedIndex != -1)
             {
                 PatientNameSELECT__PatientName(comboBox6.Text);
             }
@@ -242,15 +242,33 @@ namespace WinFormsApp1
             try
             {
                 connector.connection.Open();
+
+                DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn();
+
+                deleteButtonColumn.Name = "DeleteButton";
+                deleteButtonColumn.HeaderText = "Delete";
+                deleteButtonColumn.Text = "Delete";
+                deleteButtonColumn.UseColumnTextForButtonValue = true;
+
+                deleteButtonColumn.FlatStyle = FlatStyle.Flat;
+                deleteButtonColumn.DefaultCellStyle.BackColor = Color.Red;
+                deleteButtonColumn.DefaultCellStyle.ForeColor = Color.White;
+                deleteButtonColumn.DefaultCellStyle.SelectionForeColor = Color.White;
+
+
+
                 string query = "SELECT PatientName, Mobile, Address, City, HandleByDoctor, RoomType FROM patients WHERE PatientName=@PatientName";
                 MySqlCommand command = new MySqlCommand(query, connector.connection);
                 command.Parameters.AddWithValue("@PatientName", patientName);
+
+
 
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                 {
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     dataGridView3.DataSource = dataTable;
+                    dataGridView3.Columns.Add(deleteButtonColumn);
                 }
 
             }
@@ -287,10 +305,11 @@ namespace WinFormsApp1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if(textBox5.Text != string.Empty)
+            if (textBox5.Text != string.Empty)
             {
                 PatientNameTextBox__MobileNo(textBox5.Text);
-            } else
+            }
+            else
             {
                 MessageBox.Show("You must write patient mobile phone.");
             }
