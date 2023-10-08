@@ -88,5 +88,19 @@ namespace WinFormsApp1
 
             addPatient.Show();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            panel2.Controls.Clear();
+
+            Bill bill = new Bill();
+            bill.TopLevel = false;
+            panel2.Controls.Add(bill);
+
+            bill.Size = panel2.Size;
+            bill.Location = new Point(0, 0);
+
+            bill.Show();
+        }
     }
 }
