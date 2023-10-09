@@ -71,7 +71,7 @@ namespace WinFormsApp1
                     addButtonColumn.DefaultCellStyle.ForeColor = Color.White;
                     addButtonColumn.DefaultCellStyle.SelectionForeColor = Color.White;
 
-                string query = "SELECT PatientName, Mobile, Address, City, HandleByDoctor, RoomType FROM patients WHERE PatientName=@PatientName";
+                string query = "SELECT PatientID, PatientName, Mobile, Address, City, HandleByDoctor, RoomType FROM patients WHERE PatientName=@PatientName";
                 MySqlCommand command = new MySqlCommand(query, connector.connection);
                 command.Parameters.AddWithValue("@PatientName", patientName);
 
@@ -122,8 +122,9 @@ namespace WinFormsApp1
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             string mobilePhonePatient = dataGridView1.Rows[e.RowIndex].Cells["Mobile"].Value.ToString();
+            int patientID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["PatientID"].Value);
 
-            AddBill addBill = new AddBill(mobilePhonePatient);
+            AddBill addBill = new AddBill(mobilePhonePatient, patientID);
             addBill.Show();
         }
     }

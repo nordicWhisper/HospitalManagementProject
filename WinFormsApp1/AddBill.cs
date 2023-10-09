@@ -15,11 +15,13 @@ namespace WinFormsApp1
     {
         DataBaseConnector connector = new DataBaseConnector();
         public string MobilePhonePatient { get; }
+        public int PatientID { get; }
 
-        public AddBill(string mobilePhonePatient)
+        public AddBill(string mobilePhonePatient, int patientID)
         {
             InitializeComponent();
             MobilePhonePatient = mobilePhonePatient;
+            PatientID = patientID;
         }
 
         private void AddBill_Load(object sender, EventArgs e)
@@ -40,7 +42,7 @@ namespace WinFormsApp1
 
                 while (reader.Read())
                 {
-                    if(MobilePhonePatient == reader["Mobile"].ToString())
+                    if (MobilePhonePatient == reader["Mobile"].ToString())
                     {
                         label41.Text = reader["PatientName"].ToString();
                         label42.Text = reader["Mobile"].ToString();
@@ -101,7 +103,8 @@ namespace WinFormsApp1
             if (double.TryParse(textBox1.Text, out double value))
             {
                 textToDouble = value * double.Parse(label33.Text);
-            } else
+            }
+            else
             {
                 textToDouble = 0;
             }
@@ -135,6 +138,53 @@ namespace WinFormsApp1
             else
             {
                 label36.Text = "Błąd: Nieprawidłowe dane";
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                connector.connection.Open();
+
+                string roomBill = label4.Text;
+                string doctorBill = label9.Text;
+                string medicineBill = label10.Text;
+                string totalBill = label36.Text;
+                string paidBill = label37.Text;
+                string remainingBill = totalBill;
+                int patientID = PatientID;
+
+
+                string query = "INSERT INTO bills (RoomBill, DoctorBill, MedicineBill, TotalBill, PaidBill, RemainingBill, PatientID) VALUES (@RoomBill, @DoctorBill, @MedicineBill, @TotalBill, @PaidBill, @RemainingBill, @PatientID)";
+                MySqlCommand command = new MySqlCommand(query, connector.connection);
+                command.Parameters.AddWithValue("@RoomBill", roomBill);
+                command.Parameters.AddWithValue("@DoctorBill", doctorBill);
+                command.Parameters.AddWithValue("@MedicineBill", medicineBill);
+                command.Parameters.AddWithValue("@TotalBill", totalBill);
+                command.Parameters.AddWithValue("@PaidBill", paidBill);
+                command.Parameters.AddWithValue("@RemainingBill", remainingBill);
+                command.Parameters.AddWithValue("@PatientID", patientID);
+
+                int rowsAffected = command.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Bill has been added successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to add bill.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured: " + ex.Message);
+            }
+            finally
+            {
+                connector.connection.Close();
             }
         }
     }

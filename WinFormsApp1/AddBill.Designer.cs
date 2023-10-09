@@ -393,6 +393,7 @@
             button1.TabIndex = 35;
             button1.Text = "ADD Bill";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // label10
             // 
