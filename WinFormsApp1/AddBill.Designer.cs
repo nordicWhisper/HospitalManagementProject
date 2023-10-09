@@ -436,6 +436,7 @@
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(100, 23);
             textBox3.TabIndex = 30;
+            textBox3.TextChanged += textBox3_TextChanged;
             // 
             // textBox2
             // 
@@ -443,6 +444,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(100, 23);
             textBox2.TabIndex = 29;
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // label6
             // 
@@ -486,6 +488,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(100, 23);
             textBox1.TabIndex = 24;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label2
             // 
@@ -528,9 +531,9 @@
             label33.AutoSize = true;
             label33.Location = new Point(158, 40);
             label33.Name = "label33";
-            label33.Size = new Size(31, 15);
+            label33.Size = new Size(13, 15);
             label33.TabIndex = 17;
-            label33.Text = "5000";
+            label33.Text = "0";
             // 
             // label30
             // 
@@ -599,6 +602,7 @@
             Controls.Add(panel3);
             Name = "AddBill";
             Text = "AddBill";
+            Load += AddBill_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel3.ResumeLayout(false);

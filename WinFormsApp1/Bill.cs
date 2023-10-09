@@ -57,17 +57,19 @@ namespace WinFormsApp1
             {
                 connector.connection.Open();
 
+                bool addButtonColumnExists = false;
+                string targetColumnName = "AddButton";
                 DataGridViewButtonColumn addButtonColumn = new DataGridViewButtonColumn();
+                    
+                    addButtonColumn.Name = "AddButton";
+                    addButtonColumn.HeaderText = "ADD";
+                    addButtonColumn.Text = "ADD";
+                    addButtonColumn.UseColumnTextForButtonValue = true;
 
-                addButtonColumn.Name = "AddButton";
-                addButtonColumn.HeaderText = "ADD";
-                addButtonColumn.Text = "ADD";
-                addButtonColumn.UseColumnTextForButtonValue = true;
-
-                addButtonColumn.FlatStyle = FlatStyle.Flat;
-                addButtonColumn.DefaultCellStyle.BackColor = Color.Green;
-                addButtonColumn.DefaultCellStyle.ForeColor = Color.White;
-                addButtonColumn.DefaultCellStyle.SelectionForeColor = Color.White;
+                    addButtonColumn.FlatStyle = FlatStyle.Flat;
+                    addButtonColumn.DefaultCellStyle.BackColor = Color.Green;
+                    addButtonColumn.DefaultCellStyle.ForeColor = Color.White;
+                    addButtonColumn.DefaultCellStyle.SelectionForeColor = Color.White;
 
                 string query = "SELECT PatientName, Mobile, Address, City, HandleByDoctor, RoomType FROM patients WHERE PatientName=@PatientName";
                 MySqlCommand command = new MySqlCommand(query, connector.connection);
@@ -78,7 +80,20 @@ namespace WinFormsApp1
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     dataGridView1.DataSource = dataTable;
-                    dataGridView1.Columns.Add(addButtonColumn);
+
+                    foreach (DataGridViewColumn column in dataGridView1.Columns)
+                    {
+                        if (column.Name == targetColumnName)
+                        {
+                            addButtonColumnExists = true;
+                            break;
+                        }
+                    }
+
+                    if (!addButtonColumnExists)
+                    {
+                        dataGridView1.Columns.Add(addButtonColumn);
+                    }  
                 }
             }
             catch (Exception ex)
@@ -88,6 +103,7 @@ namespace WinFormsApp1
             finally
             {
                 connector.connection.Close();
+
             }
         }
 
@@ -105,7 +121,9 @@ namespace WinFormsApp1
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            AddBill addBill = new AddBill();
+            string mobilePhonePatient = dataGridView1.Rows[e.RowIndex].Cells["Mobile"].Value.ToString();
+
+            AddBill addBill = new AddBill(mobilePhonePatient);
             addBill.Show();
         }
     }
