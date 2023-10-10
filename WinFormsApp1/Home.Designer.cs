@@ -31,6 +31,8 @@
             label1 = new Label();
             label2 = new Label();
             panel1 = new Panel();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -63,18 +65,30 @@
             panel1.Size = new Size(1394, 20);
             panel1.TabIndex = 2;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.pic;
+            pictureBox1.Location = new Point(322, 207);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(318, 196);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 3;
+            pictureBox1.TabStop = false;
+            // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSteelBlue;
             ClientSize = new Size(800, 450);
+            Controls.Add(pictureBox1);
             Controls.Add(panel1);
             Controls.Add(label2);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Home";
             Text = "Home";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -84,5 +98,6 @@
         private Label label1;
         private Label label2;
         private Panel panel1;
+        private PictureBox pictureBox1;
     }
 }

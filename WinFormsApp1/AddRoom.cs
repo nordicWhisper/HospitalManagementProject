@@ -27,13 +27,21 @@ namespace WinFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             string roomtype = textBox1.Text;
             string totalroom = textBox2.Text;
             string rateday = textBox3.Text;
+            if (roomtype != string.Empty && totalroom != string.Empty && rateday != string.Empty)
+            {
+                AddRooms(roomtype, Int32.Parse(totalroom), Int32.Parse(rateday));
+                ShowRoomReports(dataGridView1);
+                dataGridView1.Refresh();
+            } else
+            {
+                MessageBox.Show("You must fill all details");
+            }
 
-            AddRooms(roomtype, Int32.Parse(totalroom), Int32.Parse(rateday));
-            ShowRoomReports(dataGridView1);
-            dataGridView1.Refresh();
+                
         }
 
         private void button2_Click(object sender, EventArgs e)

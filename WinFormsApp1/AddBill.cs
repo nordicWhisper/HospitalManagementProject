@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -134,10 +135,12 @@ namespace WinFormsApp1
             {
                 double result = value1 + value2 + value3;
                 label36.Text = result.ToString();
+                label12.Text = result.ToString();
             }
             else
             {
                 label36.Text = "Błąd: Nieprawidłowe dane";
+                label12.Text = "Błąd: Nieprawidłowe dane";
             }
         }
 

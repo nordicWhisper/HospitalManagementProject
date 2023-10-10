@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WinFormsApp1
@@ -68,10 +69,33 @@ namespace WinFormsApp1
             string mobileNo = textBox2.Text;
             string speciality = comboBox2.SelectedItem.ToString();
 
-            AddDoctors(doctorName, mobileNo, speciality);
-            ShowDoctorReports(dataGridView1);
-            EditDoctorDetailSELECT__DoctorName(comboBox1);
-            dataGridView1.Refresh();
+            List<string> doctorsDetailsToCheck = new List<string>
+            {
+                doctorName,
+                mobileNo,
+                speciality
+            };
+            bool allDataValid = true;
+
+            foreach (string item in doctorsDetailsToCheck)
+            {
+                if(string.IsNullOrEmpty(item))
+                {
+                    allDataValid = false;
+                    break;
+                }
+            }
+
+            if(allDataValid)
+            {
+                AddDoctors(doctorName, mobileNo, speciality);
+                ShowDoctorReports(dataGridView1);
+                EditDoctorDetailSELECT__DoctorName(comboBox1);
+                dataGridView1.Refresh();
+            } else
+            {
+                MessageBox.Show("You must fill all details");
+            }
         }
 
 
