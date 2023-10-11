@@ -102,5 +102,19 @@ namespace WinFormsApp1
 
             bill.Show();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            panel2.Controls.Clear();
+
+            Payment payment = new Payment();
+            payment.TopLevel = false;
+            panel2.Controls.Add(payment);
+
+            payment.Size = panel2.Size;
+            payment.Location = new Point(0, 0);
+
+            payment.Show();
+        }
     }
 }
