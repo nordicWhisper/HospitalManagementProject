@@ -31,8 +31,6 @@ namespace WinFormsApp1
             home.Show();
         }
 
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             panel2.Controls.Clear();
@@ -115,6 +113,33 @@ namespace WinFormsApp1
             payment.Location = new Point(0, 0);
 
             payment.Show();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            panel2.Controls.Clear();
+
+            AdminReports adminReports = new AdminReports();
+            adminReports.TopLevel = false;
+            panel2.Controls.Add(adminReports);
+
+            adminReports.Size = panel2.Size;
+            adminReports.Location = new Point(0, 0);
+
+            adminReports.Show();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure to log out?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            Form1 form1 = new Form1();
+            if (result == DialogResult.Yes)
+            {
+                panel2.Controls.Clear();
+                this.Close();
+                this.Hide();
+                form1.ShowDialog();
+            }
         }
     }
 }

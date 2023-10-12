@@ -25,7 +25,6 @@ namespace WinFormsApp1
             PatientBill__SELECT__By__PatientName();
         }
 
-        //panel7
         private void ShowPatientDetails()
         {
             try

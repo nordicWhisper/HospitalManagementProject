@@ -1,5 +1,6 @@
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WinFormsApp1
 {
@@ -65,6 +66,8 @@ namespace WinFormsApp1
 
             if (UserLogin(textBox1.Text, textBox2.Text))
             {
+                //textBox1.Text = string.Empty;
+                //textBox2.Text = string.Empty;
                 DashboardForm dashboardForm = new DashboardForm();
                 this.Hide();
                 dashboardForm.ShowDialog();

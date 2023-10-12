@@ -78,6 +78,7 @@
             button8.TabIndex = 7;
             button8.Text = "LOG OUT";
             button8.UseVisualStyleBackColor = false;
+            button8.Click += button8_Click;
             // 
             // button7
             // 
@@ -88,6 +89,7 @@
             button7.TabIndex = 6;
             button7.Text = "ADMIN / REPORTS";
             button7.UseVisualStyleBackColor = false;
+            button7.Click += button7_Click;
             // 
             // button6
             // 
