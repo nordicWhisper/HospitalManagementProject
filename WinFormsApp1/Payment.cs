@@ -14,6 +14,7 @@ namespace WinFormsApp1
     public partial class Payment : Form
     {
         DataBaseConnector connector = new DataBaseConnector();
+        private List<string> paymentMethod = new List<string> { "CHECK", "CASH" };
         public int PatientID { get; set; }
         public Payment()
         {
@@ -23,6 +24,7 @@ namespace WinFormsApp1
         private void Payment_Load(object sender, EventArgs e)
         {
             PatientBill__SELECT__By__PatientName();
+            comboBox3.DataSource = paymentMethod;
         }
 
         private void ShowPatientDetails()
@@ -100,6 +102,52 @@ namespace WinFormsApp1
             else
             {
                 MessageBox.Show("You must choose patient name.");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure that you want to make this operation?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            string amount = textBox2.Text;
+            string paymentType = comboBox3.Text;
+            string bankName = textBox3.Text ?? "-";
+            string checkNo = textBox4.Text ?? "-";
+
+            if (result == DialogResult.Yes)
+            {
+                if(amount != string.Empty &&  paymentType != string.Empty)
+                {
+                    try
+                    {
+                        connector.connection.Open();
+                        string query = "INSERT INTO payments (BillAmount, PaymentBy, BankName, CheckNo, PatientID) VALUES (@BillAmount, @PaymentBy, @BankName, @CheckNo, @PatientID);";
+                        MySqlCommand command = new MySqlCommand(query, connector.connection);
+                        command.Parameters.AddWithValue("@BillAmount", amount);
+                        command.Parameters.AddWithValue("@PaymentBy", paymentType);
+                        command.Parameters.AddWithValue("@BankName", bankName);
+                        command.Parameters.AddWithValue("@CheckNo", checkNo);
+                        command.Parameters.AddWithValue("@PatientID", PatientID);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Payment done by " + paymentType);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error has been occured " + ex);
+                    }
+                    finally
+                    {
+                        connector.connection.Close();
+                    }
+                } else
+                {
+                    MessageBox.Show("You must fill require field");
+                }
             }
         }
     }

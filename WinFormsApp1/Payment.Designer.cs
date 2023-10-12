@@ -469,6 +469,7 @@
             button1.TabIndex = 12;
             button1.Text = "Make";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // panel13
             // 
@@ -533,7 +534,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(121, 31);
+            textBox2.Location = new Point(121, 36);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(87, 23);
             textBox2.TabIndex = 9;
