@@ -174,6 +174,7 @@ namespace WinFormsApp1
                 if (rowsAffected > 0)
                 {
                     MessageBox.Show("Bill has been added successfully.");
+                    this.Close();
                 }
                 else
                 {

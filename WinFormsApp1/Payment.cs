@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace WinFormsApp1
 {
@@ -65,6 +66,42 @@ namespace WinFormsApp1
             }
         }
 
+        private void ShowPatientBills()
+        {
+            try
+            {
+                connector.connection.Open();
+
+                string query = "SELECT * FROM bills WHERE PatientID = @PatientID";
+                MySqlCommand command = new MySqlCommand(query, connector.connection);
+                command.Parameters.AddWithValue("@PatientID", PatientID);
+                MySqlDataReader reader = command.ExecuteReader();
+                
+
+                while (reader.Read())
+                {
+                    if (reader["PatientID"].ToString() == PatientID.ToString())
+                    {
+                        label31.Text = reader["RoomBill"].ToString();
+                        label30.Text = reader["DoctorBill"].ToString();
+                        label29.Text = reader["MedicineBill"].ToString();
+
+                        label2.Text = reader["TotalBill"].ToString();
+                        label28.Text = reader["PaidBill"].ToString();
+                        label3.Text = reader["RemainingBill"].ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured: " + ex.Message);
+            }
+            finally
+            {
+                connector.connection.Close();
+            }
+        }
+
         private void PatientBill__SELECT__By__PatientName()
         {
             try
@@ -92,12 +129,73 @@ namespace WinFormsApp1
             }
         }
 
+        private void InsertINTO__Payments(string amount, string paymentType, string bankName, string checkNo)
+        {
+            try
+            {
+                connector.connection.Open();
+                string query = "INSERT INTO payments (BillAmount, PaymentBy, BankName, CheckNo, PatientID) VALUES (@BillAmount, @PaymentBy, @BankName, @CheckNo, @PatientID);";
+                MySqlCommand command = new MySqlCommand(query, connector.connection);
+                command.Parameters.AddWithValue("@BillAmount", amount);
+                command.Parameters.AddWithValue("@PaymentBy", paymentType);
+                command.Parameters.AddWithValue("@BankName", bankName);
+                command.Parameters.AddWithValue("@CheckNo", checkNo);
+                command.Parameters.AddWithValue("@PatientID", PatientID);
+
+                int rowsAffected = command.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Payment done by " + paymentType);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error has been occured " + ex);
+            }
+            finally
+            {
+                connector.connection.Close();
+            }
+        }
+
+        private void InsertINTO__Bills__PaidBill(string amount)
+        {
+            try
+            {
+                connector.connection.Open();
+                string query = "UPDATE bills SET PaidBill = PaidBill + @PaidBill WHERE PatientID = @PatientID;";
+                MySqlCommand command = new MySqlCommand(query, connector.connection);
+                command.Parameters.AddWithValue("@PaidBill", amount);
+                command.Parameters.AddWithValue("@PatientID", PatientID);
+
+                int rowsAffected = command.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Paid bill have been updated " + amount);
+                } else
+                {
+                    MessageBox.Show("Error has been occured.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error has been occured " + ex);
+            }
+            finally
+            {
+                connector.connection.Close();
+            }
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex != -1)
             {
                 panel8.Visible = true;
                 ShowPatientDetails();
+                ShowPatientBills();
             }
             else
             {
@@ -108,7 +206,6 @@ namespace WinFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure that you want to make this operation?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
             string amount = textBox2.Text;
             string paymentType = comboBox3.Text;
             string bankName = textBox3.Text ?? "-";
@@ -116,35 +213,13 @@ namespace WinFormsApp1
 
             if (result == DialogResult.Yes)
             {
-                if(amount != string.Empty &&  paymentType != string.Empty)
+                if (amount != string.Empty && paymentType != string.Empty)
                 {
-                    try
-                    {
-                        connector.connection.Open();
-                        string query = "INSERT INTO payments (BillAmount, PaymentBy, BankName, CheckNo, PatientID) VALUES (@BillAmount, @PaymentBy, @BankName, @CheckNo, @PatientID);";
-                        MySqlCommand command = new MySqlCommand(query, connector.connection);
-                        command.Parameters.AddWithValue("@BillAmount", amount);
-                        command.Parameters.AddWithValue("@PaymentBy", paymentType);
-                        command.Parameters.AddWithValue("@BankName", bankName);
-                        command.Parameters.AddWithValue("@CheckNo", checkNo);
-                        command.Parameters.AddWithValue("@PatientID", PatientID);
-
-                        int rowsAffected = command.ExecuteNonQuery();
-
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Payment done by " + paymentType);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error has been occured " + ex);
-                    }
-                    finally
-                    {
-                        connector.connection.Close();
-                    }
-                } else
+                    InsertINTO__Payments(amount, paymentType, bankName, checkNo);
+                    InsertINTO__Bills__PaidBill(amount);
+                    panel8.Visible = false;
+                }
+                else
                 {
                     MessageBox.Show("You must fill require field");
                 }
