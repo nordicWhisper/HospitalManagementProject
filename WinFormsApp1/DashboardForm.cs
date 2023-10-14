@@ -141,5 +141,14 @@ namespace WinFormsApp1
                 form1.ShowDialog();
             }
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure that you want to exit?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Environment.Exit(0);
+            }
+        }
     }
 }

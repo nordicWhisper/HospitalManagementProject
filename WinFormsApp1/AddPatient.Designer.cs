@@ -468,9 +468,9 @@
             panel1.Controls.Add(label19);
             panel1.Controls.Add(label18);
             panel1.Controls.Add(label17);
-            panel1.Location = new Point(42, 73);
+            panel1.Location = new Point(3, 73);
             panel1.Name = "panel1";
-            panel1.Size = new Size(676, 293);
+            panel1.Size = new Size(759, 293);
             panel1.TabIndex = 1;
             panel1.Visible = false;
             // 
@@ -566,11 +566,15 @@
             // 
             // dataGridView2
             // 
+            dataGridView2.AllowUserToAddRows = false;
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView2.BackgroundColor = SystemColors.ControlLightLight;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Location = new Point(1, 199);
             dataGridView2.Name = "dataGridView2";
+            dataGridView2.ReadOnly = true;
             dataGridView2.RowTemplate.Height = 25;
-            dataGridView2.Size = new Size(674, 94);
+            dataGridView2.Size = new Size(758, 94);
             dataGridView2.TabIndex = 24;
             // 
             // panel3
@@ -591,7 +595,7 @@
             panel3.Controls.Add(label27);
             panel3.Location = new Point(0, 148);
             panel3.Name = "panel3";
-            panel3.Size = new Size(677, 50);
+            panel3.Size = new Size(759, 50);
             panel3.TabIndex = 23;
             // 
             // dataGridView1
@@ -902,6 +906,7 @@
             // 
             dataGridView3.AllowUserToAddRows = false;
             dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView3.BackgroundColor = SystemColors.ControlLightLight;
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView3.Location = new Point(34, 104);
             dataGridView3.Name = "dataGridView3";

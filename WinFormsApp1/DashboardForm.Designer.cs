@@ -68,6 +68,7 @@
             button9.TabIndex = 8;
             button9.Text = "EXIT";
             button9.UseVisualStyleBackColor = false;
+            button9.Click += button9_Click;
             // 
             // button8
             // 

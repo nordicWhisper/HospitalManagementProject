@@ -30,6 +30,8 @@ namespace WinFormsApp1
         public string RoomType { get; set; }
         public string EstimatedBill { get; set; }
 
+        public int PatientID { get; set; }
+
         DataBaseConnector connector = new DataBaseConnector();
         public AddPatient()
         {
@@ -135,6 +137,7 @@ namespace WinFormsApp1
                 command.Parameters.AddWithValue("@RoomType", roomType);
                 command.Parameters.AddWithValue("@EstimatedBill", estimatedBill);
 
+
                 int rowsAffected = command.ExecuteNonQuery();
                 MessageBox.Show("Patient detail has added successfully.");
                 return rowsAffected > 0;
@@ -176,17 +179,6 @@ namespace WinFormsApp1
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (comboBox1.SelectedIndex != -1)
-            {
-                ShowPatientReports();
-            }
-            else
-            {
-                MessageBox.Show("You must choose patient name.");
-            }
-        }
 
         private void ShowPatientReports()
         {
@@ -211,6 +203,7 @@ namespace WinFormsApp1
                     label48.Text = reader["HandleByDoctor"].ToString();
                     label49.Text = reader["RoomType"].ToString();
                     label50.Text = reader["EstimatedBill"].ToString();
+                    PatientID = (int)reader["PatientID"];
                 }
             }
             catch (Exception ex)
@@ -245,7 +238,7 @@ namespace WinFormsApp1
                 try
                 {
                     connector.connection.Open();
-                    
+
                     int recordIdToDelete = Convert.ToInt32(dataGridView3.Rows[e.RowIndex].Cells["PatientID"].Value);
                     string query = "DELETE FROM patients WHERE PatientID=@PatientID;";
 
@@ -353,6 +346,46 @@ namespace WinFormsApp1
             else
             {
                 MessageBox.Show("You must write patient mobile phone.");
+            }
+        }
+
+        private void Show__Patient__Bills()
+        {
+            try
+            {
+                connector.connection.Open();
+                string query = "SELECT * FROM payments WHERE PatientID = @PatientID";
+                MySqlCommand command = new MySqlCommand(query, connector.connection);
+                command.Parameters.AddWithValue("@PatientID", PatientID);
+
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                {
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dataGridView2.DataSource = dataTable;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured: " + ex.Message);
+            }
+            finally
+            {
+                connector.connection.Close();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex != -1)
+            {
+                ShowPatientReports();
+                Show__Patient__Bills();
+            }
+            else
+            {
+                MessageBox.Show("You must choose patient name.");
             }
         }
     }
