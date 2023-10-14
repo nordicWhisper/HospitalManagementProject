@@ -45,24 +45,6 @@ namespace WinFormsApp1
             PatientNameSELECT();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            PatientName = textBox1.Text;
-            Gender = radioButton1.Checked ? radioButton1.Text : radioButton2.Text;
-            Age = textBox2.Text;
-            Mobile = textBox3.Text;
-            Address = textBox4.Text;
-            City = textBox6.Text;
-            Pincode = textBox7.Text;
-            ReferByDoctor = textBox8.Text;
-            Disease = textBox9.Text;
-            HandleByDoctor = comboBox2.SelectedItem.ToString();
-            RoomType = comboBox4.SelectedItem.ToString();
-            EstimatedBill = textBox10.Text;
-            AddDoctors(PatientName, Gender, Age, Mobile, Address, City, Pincode, ReferByDoctor, Disease, HandleByDoctor, RoomType, EstimatedBill);
-        }
-
         private void HandleByDoctorSELECT()
         {
             try
@@ -115,7 +97,7 @@ namespace WinFormsApp1
             }
         }
 
-        private bool AddDoctors(string patientName, string gender, string age, string mobile, string address, string city, string pincode, string referByDoctor, string disease, string handleByDoctor, string roomType, string estimatedBill)
+        private bool AddPatients(string patientName, string gender, string age, string mobile, string address, string city, string pincode, string referByDoctor, string disease, string handleByDoctor, string roomType, string estimatedBill)
         {
             try
             {
@@ -179,57 +161,6 @@ namespace WinFormsApp1
             }
         }
 
-
-        private void ShowPatientReports()
-        {
-            panel1.Visible = true;
-            try
-            {
-                connector.connection.Open();
-
-                string query = "SELECT * FROM patients";
-                MySqlCommand command = new MySqlCommand(query, connector.connection);
-                MySqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    label41.Text = reader["PatientName"].ToString();
-                    label42.Text = reader["Mobile"].ToString();
-                    label43.Text = reader["Address"].ToString();
-                    label44.Text = reader["City"].ToString();
-                    label45.Text = reader["Pincode"].ToString();
-                    label46.Text = reader["ReferByDoctor"].ToString();
-                    label47.Text = reader["Disease"].ToString();
-                    label48.Text = reader["HandleByDoctor"].ToString();
-                    label49.Text = reader["RoomType"].ToString();
-                    label50.Text = reader["EstimatedBill"].ToString();
-                    PatientID = (int)reader["PatientID"];
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occured: " + ex.Message);
-            }
-            finally
-            {
-                connector.connection.Close();
-            }
-        }
-
-
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            if (comboBox6.SelectedIndex != -1)
-            {
-                PatientNameSELECT__PatientName(comboBox6.Text);
-            }
-            else
-            {
-                MessageBox.Show("You must choose patient name.");
-            }
-        }
-
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == dataGridView3.Columns["DeleteButton"].Index)
@@ -289,8 +220,6 @@ namespace WinFormsApp1
                 deleteButtonColumn.DefaultCellStyle.ForeColor = Color.White;
                 deleteButtonColumn.DefaultCellStyle.SelectionForeColor = Color.White;
 
-
-
                 string query = "SELECT PatientID, PatientName, Mobile, Address, City, HandleByDoctor, RoomType FROM patients WHERE PatientName=@PatientName";
                 MySqlCommand command = new MySqlCommand(query, connector.connection);
                 command.Parameters.AddWithValue("@PatientName", patientName);
@@ -337,19 +266,44 @@ namespace WinFormsApp1
             finally { connector.connection.Close(); }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Show__Patient__Details(string patientDetails)
         {
-            if (textBox5.Text != string.Empty)
+            panel1.Visible = true;
+            try
             {
-                PatientNameTextBox__MobileNo(textBox5.Text);
+                connector.connection.Open();
+
+                string query = "SELECT * FROM patients WHERE PatientName = @PatientName";
+                MySqlCommand command = new MySqlCommand(query, connector.connection);
+                command.Parameters.AddWithValue("@PatientName", patientDetails);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    label41.Text = reader["PatientName"].ToString();
+                    label42.Text = reader["Mobile"].ToString();
+                    label43.Text = reader["Address"].ToString();
+                    label44.Text = reader["City"].ToString();
+                    label45.Text = reader["Pincode"].ToString();
+                    label46.Text = reader["ReferByDoctor"].ToString();
+                    label47.Text = reader["Disease"].ToString();
+                    label48.Text = reader["HandleByDoctor"].ToString();
+                    label49.Text = reader["RoomType"].ToString();
+                    label50.Text = reader["EstimatedBill"].ToString();
+                    PatientID = (int)reader["PatientID"];
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("You must write patient mobile phone.");
+                MessageBox.Show("An error occured: " + ex.Message);
+            }
+            finally
+            {
+                connector.connection.Close();
             }
         }
 
-        private void Show__Patient__Bills()
+        private void Show__Patient__Payments()
         {
             try
             {
@@ -376,12 +330,86 @@ namespace WinFormsApp1
             }
         }
 
+        private void Show__Patient__Bills()
+        {
+            try
+            {
+                connector.connection.Open();
+                string query = "SELECT * FROM bills WHERE PatientID = @PatientID";
+                MySqlCommand command = new MySqlCommand(query, connector.connection);
+                command.Parameters.AddWithValue("@PatientID", PatientID);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    label33.Text = reader["RoomBill"].ToString();
+                    label34.Text = reader["DoctorBill"].ToString();
+                    label35.Text = reader["MedicineBill"].ToString();
+                    label36.Text = reader["TotalBill"].ToString();
+                    label37.Text = reader["PaidBill"].ToString();
+                    label38.Text = reader["RemainingBill"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured: " + ex.Message);
+            }
+            finally
+            {
+                connector.connection.Close();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            PatientName = textBox1.Text;
+            Gender = radioButton1.Checked ? radioButton1.Text : radioButton2.Text;
+            Age = textBox2.Text;
+            Mobile = textBox3.Text;
+            Address = textBox4.Text;
+            City = textBox6.Text;
+            Pincode = textBox7.Text;
+            ReferByDoctor = textBox8.Text;
+            Disease = textBox9.Text;
+            HandleByDoctor = comboBox2.SelectedItem.ToString();
+            RoomType = comboBox4.SelectedItem.ToString();
+            EstimatedBill = textBox10.Text;
+            AddPatients(PatientName, Gender, Age, Mobile, Address, City, Pincode, ReferByDoctor, Disease, HandleByDoctor, RoomType, EstimatedBill);
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex != -1)
             {
-                ShowPatientReports();
+                string patientDetails = comboBox1.Text;
+                Show__Patient__Details(patientDetails);
+                Show__Patient__Payments();
                 Show__Patient__Bills();
+            }
+            else
+            {
+                MessageBox.Show("You must choose patient name.");
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (textBox5.Text != string.Empty)
+            {
+                PatientNameTextBox__MobileNo(textBox5.Text);
+            }
+            else
+            {
+                MessageBox.Show("You must write patient mobile phone.");
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (comboBox6.SelectedIndex != -1)
+            {
+                PatientNameSELECT__PatientName(comboBox6.Text);
             }
             else
             {
