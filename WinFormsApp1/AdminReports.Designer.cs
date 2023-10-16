@@ -69,6 +69,7 @@
             panel4 = new Panel();
             panel1 = new Panel();
             panel3 = new Panel();
+            panel9 = new Panel();
             button1 = new Button();
             label27 = new Label();
             label16 = new Label();
@@ -221,6 +222,7 @@
             button2.TabIndex = 47;
             button2.Text = "UPDATE";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // label30
             // 
@@ -480,6 +482,7 @@
             button3.TabIndex = 4;
             button3.Text = "SELECT";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // comboBox1
             // 
@@ -552,6 +555,7 @@
             // panel3
             // 
             panel3.BackColor = Color.MintCream;
+            panel3.Controls.Add(panel9);
             panel3.Controls.Add(button1);
             panel3.Controls.Add(label27);
             panel3.Controls.Add(label16);
@@ -570,6 +574,14 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(773, 121);
             panel3.TabIndex = 3;
+            // 
+            // panel9
+            // 
+            panel9.BackColor = Color.Black;
+            panel9.Location = new Point(322, 71);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(221, 2);
+            panel9.TabIndex = 49;
             // 
             // button1
             // 
@@ -956,6 +968,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "AdminReports";
             Text = "AdminReports";
+            Load += AdminReports_Load;
             tabControl1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             panel5.ResumeLayout(false);
@@ -1058,5 +1071,6 @@
         private Label label68;
         private Label label2;
         private ComboBox comboBox2;
+        private Panel panel9;
     }
 }
