@@ -164,7 +164,7 @@ namespace WinFormsApp1
             try
             {
                 connector.connection.Open();
-                string query = "UPDATE bills SET PaidBill = PaidBill + @PaidBill WHERE PatientID = @PatientID;";
+                string query = "UPDATE bills SET PaidBill = PaidBill + @PaidBill, RemainingBill = RemainingBill - @PaidBill WHERE PatientID = @PatientID;";
                 MySqlCommand command = new MySqlCommand(query, connector.connection);
                 command.Parameters.AddWithValue("@PaidBill", amount);
                 command.Parameters.AddWithValue("@PatientID", PatientID);
