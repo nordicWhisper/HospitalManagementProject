@@ -545,12 +545,11 @@
             panel1.Controls.Add(label19);
             panel1.Controls.Add(label18);
             panel1.Controls.Add(label17);
-            panel1.Location = new Point(0, 0);
+            panel1.Location = new Point(-4, 0);
             panel1.Name = "panel1";
             panel1.Padding = new Padding(0, 15, 0, 0);
-            panel1.Size = new Size(768, 287);
+            panel1.Size = new Size(776, 287);
             panel1.TabIndex = 3;
-            panel1.Visible = false;
             // 
             // panel3
             // 
@@ -594,6 +593,7 @@
             button1.TabIndex = 47;
             button1.Text = "Discharge";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // label27
             // 
@@ -927,6 +927,7 @@
             button5.TabIndex = 3;
             button5.Text = "SELECT";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // comboBox6
             // 

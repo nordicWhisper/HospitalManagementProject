@@ -16,6 +16,8 @@ namespace WinFormsApp1
         DataBaseConnector connector = new DataBaseConnector();
         public int PatientID { get; set; }
         public string PatientRoomType { get; set; }
+        public int PatientID__From__Discharge { get; set; }
+
         public AdminReports()
         {
             InitializeComponent();
@@ -23,11 +25,11 @@ namespace WinFormsApp1
 
         private void AdminReports_Load(object sender, EventArgs e)
         {
-            Room__Shifting__SELECT__By__PatientName();
+            Room__Shifting__Discharge__SELECT__By__PatientName();
             SELECT__Patient__Room();
         }
 
-        private void Room__Shifting__SELECT__By__PatientName()
+        private void Room__Shifting__Discharge__SELECT__By__PatientName()
         {
             try
             {
@@ -40,6 +42,7 @@ namespace WinFormsApp1
                 while (reader.Read())
                 {
                     comboBox1.Items.Add(reader["PatientName"].ToString());
+                    comboBox6.Items.Add(reader["PatientName"].ToString());
                 }
 
             }
@@ -109,7 +112,7 @@ namespace WinFormsApp1
                     {
                         label31.Text = reader["RoomType"].ToString();
                         label30.Text = reader["RateDay"].ToString();
-                    } 
+                    }
                 }
 
 
@@ -183,6 +186,77 @@ namespace WinFormsApp1
             }
         }
 
+        private void SELECT__Patient__Details__Discharge()
+        {
+            try
+            {
+                connector.connection.Open();
+
+                string query = "SELECT * FROM patients";
+                MySqlCommand command = new MySqlCommand(query, connector.connection);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    if (comboBox6.SelectedItem.ToString() == reader["PatientName"].ToString())
+                    {
+                        label41.Text = reader["PatientName"].ToString();
+                        label42.Text = reader["Mobile"].ToString();
+                        label43.Text = reader["Address"].ToString();
+                        label44.Text = reader["City"].ToString();
+                        label45.Text = reader["Pincode"].ToString();
+                        label46.Text = reader["ReferByDoctor"].ToString();
+                        label47.Text = reader["Disease"].ToString();
+                        label48.Text = reader["HandleByDoctor"].ToString();
+                        label49.Text = reader["RoomType"].ToString();
+                        label50.Text = reader["EstimatedBill"].ToString();
+                        PatientID__From__Discharge = (int)reader["PatientID"];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured: " + ex.Message);
+            }
+            finally
+            {
+                connector.connection.Close();
+            }
+        }
+
+        private void SELECT__Patient__Rooms__Discharge()
+        {
+            try
+            {
+                connector.connection.Open();
+
+                string query = "SELECT * FROM bills";
+                MySqlCommand command = new MySqlCommand(query, connector.connection);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    if (PatientID__From__Discharge == (int)reader["PatientID"])
+                    {
+                        label12.Text = reader["RoomBill"].ToString();
+                        label13.Text = reader["DoctorBill"].ToString();
+                        label14.Text = reader["MedicineBill"].ToString();
+
+                        label15.Text = reader["PaidBill"].ToString();
+                        label16.Text = reader["RemainingBill"].ToString();
+                        label27.Text = reader["TotalBill"].ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured: " + ex.Message);
+            }
+            finally
+            {
+                connector.connection.Close();
+            }
+        }
 
 
         private void button3_Click(object sender, EventArgs e)
@@ -205,7 +279,7 @@ namespace WinFormsApp1
 
             if (comboBox2.SelectedIndex != -1)
             {
-                if(result == DialogResult.Yes)
+                if (result == DialogResult.Yes)
                 {
                     string choosenPatientRoom = comboBox2.Text;
                     UPDATE__Patient__Room(choosenPatientRoom);
@@ -216,6 +290,50 @@ namespace WinFormsApp1
             {
                 MessageBox.Show("The room type must be chosen");
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (comboBox6.SelectedIndex != -1)
+            {
+                panel4.Visible = true;
+                SELECT__Patient__Details__Discharge();
+                SELECT__Patient__Rooms__Discharge();
+            }
+            else
+            {
+                MessageBox.Show("You must choose patient name.");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure that you want to make this operation?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+              try
+                {
+                    connector.connection.Open();
+                    string query = "UPDATE patients SET discharge = true WHERE PatientID = @PatientID";
+                    MySqlCommand command = new MySqlCommand(query, connector.connection);
+                    command.Parameters.AddWithValue("@PatientID", PatientID__From__Discharge);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Patient has been discharged");
+                    }
+
+
+                }  catch (Exception ex)
+                { 
+                    MessageBox.Show("An error occured: " + ex.Message);
+                } finally
+                {
+                    connector.connection.Close();
+                }
+            } 
         }
     }
 }

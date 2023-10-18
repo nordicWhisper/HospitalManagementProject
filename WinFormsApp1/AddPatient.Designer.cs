@@ -854,6 +854,7 @@
             button3.TabIndex = 4;
             button3.Text = "SELECT";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button2
             // 

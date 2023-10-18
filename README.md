@@ -14,10 +14,11 @@ The Hospital Management System is a computer software system, which is used to m
 ## Photos
 
 ![Photo1](./hospital__readme__img/Screenshot%202023-10-10%20200554.png)
-![Photo2](./hospital__readme__img/Screenshot%202023-10-10%20200644.png)
+![Photo2](./hospital__readme__img/Screenshot%202023-10-19%20010120.png)
 ![Photo3](./hospital__readme__img/Screenshot%202023-10-10%20200708.png)
 ![Photo4](./hospital__readme__img/Screenshot%202023-10-10%20200747.png)
 ![Photo5](./hospital__readme__img/Screenshot%202023-10-10%20200811.png)
+![Photo6](./hospital__readme__img/Screenshot%202023-10-19%20010215.png)
 
 ## Features
 

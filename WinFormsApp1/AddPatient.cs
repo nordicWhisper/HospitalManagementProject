@@ -43,6 +43,7 @@ namespace WinFormsApp1
             HandleByDoctorSELECT();
             RoomTypeSELECT();
             PatientNameSELECT();
+            PatientNameSELECT__Discharged();
         }
 
         private void HandleByDoctorSELECT()
@@ -140,7 +141,7 @@ namespace WinFormsApp1
             try
             {
                 connector.connection.Open();
-                string query = "SELECT PatientName from patients";
+                string query = "SELECT PatientName from patients WHERE discharge = false";
                 MySqlCommand command = new MySqlCommand(query, connector.connection);
                 MySqlDataReader reader = command.ExecuteReader();
 
@@ -148,6 +149,31 @@ namespace WinFormsApp1
                 {
                     comboBox1.Items.Add(reader["PatientName"].ToString());
                     comboBox6.Items.Add(reader["PatientName"].ToString());
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured: " + ex.Message);
+            }
+            finally
+            {
+                connector.connection.Close();
+            }
+        }
+
+        private void PatientNameSELECT__Discharged()
+        {
+            try
+            {
+                connector.connection.Open();
+                string query = "SELECT PatientName from patients WHERE discharge = true";
+                MySqlCommand command = new MySqlCommand(query, connector.connection);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    comboBox3.Items.Add(reader["PatientName"].ToString());
                 }
 
             }
@@ -410,6 +436,19 @@ namespace WinFormsApp1
             if (comboBox6.SelectedIndex != -1)
             {
                 PatientNameSELECT__PatientName(comboBox6.Text);
+            }
+            else
+            {
+                MessageBox.Show("You must choose patient name.");
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            
+            if (comboBox3.SelectedIndex != -1)
+            {
+
             }
             else
             {
