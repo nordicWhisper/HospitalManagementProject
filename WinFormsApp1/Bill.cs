@@ -31,15 +31,21 @@ namespace WinFormsApp1
             {
                 connector.connection.Open();
 
-                string query = "SELECT PatientName FROM patients";
+                string query = "SELECT PatientName, discharge FROM patients";
                 MySqlCommand command = new MySqlCommand(query, connector.connection);
                 MySqlDataReader reader = command.ExecuteReader();
                 dataGridView1.Refresh();
 
                 while (reader.Read())
                 {
-                    comboBox1.Items.Add(reader["PatientName"].ToString());
-                    comboBox6.Items.Add(reader["PatientName"].ToString());
+                    if ((bool)reader["discharge"] == true)
+                    {
+                        comboBox6.Items.Add(reader["PatientName"].ToString());
+                    } else
+                    {
+                        comboBox1.Items.Add(reader["PatientName"].ToString());
+                        comboBox6.Items.Add(reader["PatientName"].ToString());
+                    }
                 }
 
             }

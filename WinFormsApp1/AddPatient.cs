@@ -141,14 +141,17 @@ namespace WinFormsApp1
             try
             {
                 connector.connection.Open();
-                string query = "SELECT PatientName from patients WHERE discharge = false";
+                string query = "SELECT PatientName, discharge from patients";
                 MySqlCommand command = new MySqlCommand(query, connector.connection);
                 MySqlDataReader reader = command.ExecuteReader();
-
+    
                 while (reader.Read())
                 {
-                    comboBox1.Items.Add(reader["PatientName"].ToString());
                     comboBox6.Items.Add(reader["PatientName"].ToString());
+                    if ((bool)reader["discharge"] == false)
+                    {
+                        comboBox1.Items.Add(reader["PatientName"].ToString());
+                    }
                 }
 
             }
@@ -234,6 +237,8 @@ namespace WinFormsApp1
             {
                 connector.connection.Open();
 
+                bool deleteButtonColumnExists = false;
+                string targetColumnName = "DeleteButton";
                 DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn();
 
                 deleteButtonColumn.Name = "DeleteButton";
@@ -250,14 +255,25 @@ namespace WinFormsApp1
                 MySqlCommand command = new MySqlCommand(query, connector.connection);
                 command.Parameters.AddWithValue("@PatientName", patientName);
 
-
-
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                 {
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     dataGridView3.DataSource = dataTable;
-                    dataGridView3.Columns.Add(deleteButtonColumn);
+
+                    foreach (DataGridViewColumn column in dataGridView3.Columns)
+                    {
+                        if (column.Name == targetColumnName)
+                        {
+                            deleteButtonColumnExists = true;
+                            break;
+                        }
+                    }
+
+                    if (!deleteButtonColumnExists)
+                    {
+                        dataGridView3.Columns.Add(deleteButtonColumn);
+                    }
                 }
 
             }
@@ -448,7 +464,10 @@ namespace WinFormsApp1
             
             if (comboBox3.SelectedIndex != -1)
             {
-
+                string patientDetails = comboBox3.Text;
+                Show__Patient__Details(patientDetails);
+                Show__Patient__Payments();
+                Show__Patient__Bills();
             }
             else
             {

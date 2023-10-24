@@ -18,6 +18,8 @@ namespace WinFormsApp1
         public string PatientRoomType { get; set; }
         public int PatientID__From__Discharge { get; set; }
 
+        public double Remaining__Patient_bill { get; set; }
+
         public AdminReports()
         {
             InitializeComponent();
@@ -244,6 +246,10 @@ namespace WinFormsApp1
 
                         label15.Text = reader["PaidBill"].ToString();
                         label16.Text = reader["RemainingBill"].ToString();
+                        if (double.TryParse(reader["RemainingBill"].ToString(), out double remainingBill))
+                        {
+                            Remaining__Patient_bill = remainingBill;
+                        }
                         label27.Text = reader["TotalBill"].ToString();
                     }
                 }
@@ -311,27 +317,34 @@ namespace WinFormsApp1
             DialogResult result = MessageBox.Show("Are you sure that you want to make this operation?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-              try
+                if(Remaining__Patient_bill == 0)
                 {
-                    connector.connection.Open();
-                    string query = "UPDATE patients SET discharge = true WHERE PatientID = @PatientID";
-                    MySqlCommand command = new MySqlCommand(query, connector.connection);
-                    command.Parameters.AddWithValue("@PatientID", PatientID__From__Discharge);
-
-                    int rowsAffected = command.ExecuteNonQuery();
-
-                    if (rowsAffected > 0)
+                    try
                     {
-                        MessageBox.Show("Patient has been discharged");
+                        connector.connection.Open();
+                        string query = "UPDATE patients SET discharge = true WHERE PatientID = @PatientID";
+                        MySqlCommand command = new MySqlCommand(query, connector.connection);
+                        command.Parameters.AddWithValue("@PatientID", PatientID__From__Discharge);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Patient has been discharged");
+                        }
+
                     }
-
-
-                }  catch (Exception ex)
-                { 
-                    MessageBox.Show("An error occured: " + ex.Message);
-                } finally
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occured: " + ex.Message);
+                    }
+                    finally
+                    {
+                        connector.connection.Close();
+                    }
+                } else
                 {
-                    connector.connection.Close();
+                    MessageBox.Show("You have to pay bill first.");
                 }
             } 
         }
