@@ -59,7 +59,7 @@ namespace WinFormsApp1
             }
         }
 
-        private void ShowPatientReports(string patientName)
+        private void ShowPatientReports(string patientName, string mobile)
         {
             try
             {
@@ -79,9 +79,10 @@ namespace WinFormsApp1
                 addButtonColumn.DefaultCellStyle.ForeColor = Color.White;
                 addButtonColumn.DefaultCellStyle.SelectionForeColor = Color.White;
 
-                string query = "SELECT PatientID, PatientName, Mobile, Address, City, HandleByDoctor, RoomType FROM patients WHERE PatientName=@PatientName";
+                string query = "SELECT PatientID, PatientName, Mobile, Address, City, HandleByDoctor, RoomType FROM patients WHERE PatientName=@PatientName OR Mobile=@Mobile";
                 MySqlCommand command = new MySqlCommand(query, connector.connection);
                 command.Parameters.AddWithValue("@PatientName", patientName);
+                command.Parameters.AddWithValue("@Mobile", mobile);
 
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
                 {
@@ -186,11 +187,27 @@ namespace WinFormsApp1
             }
         }
 
+
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string mobilePhonePatient = dataGridView1.Rows[e.RowIndex].Cells["Mobile"].Value.ToString();
+            int patientID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["PatientID"].Value);
+
+            AddBill addBill = new AddBill(mobilePhonePatient, patientID);
+            addBill.Show();
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex != -1)
+            if (comboBox1.SelectedIndex != -1 || textBox1.Text != null)
             {
-                ShowPatientReports(comboBox1.Text);
+                ShowPatientReports(comboBox1.Text, textBox1.Text);
             }
             else
             {
@@ -211,20 +228,6 @@ namespace WinFormsApp1
             {
                 MessageBox.Show("You must choose patient name.");
             }
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            string mobilePhonePatient = dataGridView1.Rows[e.RowIndex].Cells["Mobile"].Value.ToString();
-            int patientID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["PatientID"].Value);
-
-            AddBill addBill = new AddBill(mobilePhonePatient, patientID);
-            addBill.Show();
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

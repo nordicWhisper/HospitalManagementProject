@@ -88,19 +88,21 @@
             button3 = new Button();
             comboBox1 = new ComboBox();
             label6 = new Label();
-            tabPage3 = new TabPage();
-            panel4 = new Panel();
-            label5 = new Label();
-            label4 = new Label();
-            dataGridView1 = new DataGridView();
-            groupBox4 = new GroupBox();
-            textBox5 = new TextBox();
-            label39 = new Label();
-            button4 = new Button();
-            button5 = new Button();
-            comboBox6 = new ComboBox();
-            label40 = new Label();
             label1 = new Label();
+            groupBox4 = new GroupBox();
+            label40 = new Label();
+            comboBox6 = new ComboBox();
+            button5 = new Button();
+            button4 = new Button();
+            label39 = new Label();
+            textBox5 = new TextBox();
+            panel4 = new Panel();
+            dataGridView1 = new DataGridView();
+            label4 = new Label();
+            label5 = new Label();
+            label12 = new Label();
+            label13 = new Label();
+            tabPage3 = new TabPage();
             tabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
             panel8.SuspendLayout();
@@ -109,10 +111,10 @@
             groupBox1.SuspendLayout();
             panel13.SuspendLayout();
             groupBox2.SuspendLayout();
-            tabPage3.SuspendLayout();
+            groupBox4.SuspendLayout();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            groupBox4.SuspendLayout();
+            tabPage3.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -745,58 +747,17 @@
             label6.TabIndex = 1;
             label6.Text = "Patient Name:";
             // 
-            // tabPage3
+            // label1
             // 
-            tabPage3.BackColor = Color.LightSteelBlue;
-            tabPage3.Controls.Add(panel4);
-            tabPage3.Controls.Add(groupBox4);
-            tabPage3.Location = new Point(4, 24);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(768, 378);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "Payment Reports";
-            // 
-            // panel4
-            // 
-            panel4.Controls.Add(label5);
-            panel4.Controls.Add(label4);
-            panel4.Controls.Add(dataGridView1);
-            panel4.Location = new Point(0, 83);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(769, 287);
-            panel4.TabIndex = 4;
-            panel4.Visible = false;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.ForeColor = Color.Green;
-            label5.Location = new Point(252, 7);
-            label5.Name = "label5";
-            label5.Size = new Size(46, 15);
-            label5.TabIndex = 10;
-            label5.Text = "Bill No:";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.ForeColor = Color.Green;
-            label4.Location = new Point(34, 7);
-            label4.Name = "label4";
-            label4.Size = new Size(86, 15);
-            label4.TabIndex = 10;
-            label4.Text = "Patient Name:";
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(-4, 25);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(776, 270);
-            dataGridView1.TabIndex = 0;
+            label1.Anchor = AnchorStyles.None;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.SteelBlue;
+            label1.Location = new Point(284, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(231, 32);
+            label1.TabIndex = 8;
+            label1.Text = "ADD Payment Detail";
             // 
             // groupBox4
             // 
@@ -813,21 +774,32 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Patient Bill Reports";
             // 
-            // textBox5
+            // label40
             // 
-            textBox5.Location = new Point(415, 27);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(146, 23);
-            textBox5.TabIndex = 9;
+            label40.AutoSize = true;
+            label40.Location = new Point(6, 29);
+            label40.Name = "label40";
+            label40.Size = new Size(82, 15);
+            label40.TabIndex = 1;
+            label40.Text = "Patient Name:";
             // 
-            // label39
+            // comboBox6
             // 
-            label39.AutoSize = true;
-            label39.Location = new Point(364, 30);
-            label39.Name = "label39";
-            label39.Size = new Size(45, 15);
-            label39.TabIndex = 6;
-            label39.Text = "Bill No:";
+            comboBox6.FormattingEnabled = true;
+            comboBox6.Location = new Point(91, 26);
+            comboBox6.Name = "comboBox6";
+            comboBox6.Size = new Size(121, 23);
+            comboBox6.TabIndex = 2;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(218, 26);
+            button5.Name = "button5";
+            button5.Size = new Size(75, 23);
+            button5.TabIndex = 3;
+            button5.Text = "SELECT";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // button4
             // 
@@ -838,43 +810,103 @@
             button4.Text = "SELECT";
             button4.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // label39
             // 
-            button5.Location = new Point(218, 26);
-            button5.Name = "button5";
-            button5.Size = new Size(75, 23);
-            button5.TabIndex = 3;
-            button5.Text = "SELECT";
-            button5.UseVisualStyleBackColor = true;
+            label39.AutoSize = true;
+            label39.Location = new Point(364, 30);
+            label39.Name = "label39";
+            label39.Size = new Size(45, 15);
+            label39.TabIndex = 6;
+            label39.Text = "Bill No:";
             // 
-            // comboBox6
+            // textBox5
             // 
-            comboBox6.FormattingEnabled = true;
-            comboBox6.Location = new Point(91, 26);
-            comboBox6.Name = "comboBox6";
-            comboBox6.Size = new Size(121, 23);
-            comboBox6.TabIndex = 2;
+            textBox5.Location = new Point(415, 27);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(146, 23);
+            textBox5.TabIndex = 9;
             // 
-            // label40
+            // panel4
             // 
-            label40.AutoSize = true;
-            label40.Location = new Point(6, 29);
-            label40.Name = "label40";
-            label40.Size = new Size(82, 15);
-            label40.TabIndex = 1;
-            label40.Text = "Patient Name:";
+            panel4.Controls.Add(label13);
+            panel4.Controls.Add(label12);
+            panel4.Controls.Add(label5);
+            panel4.Controls.Add(label4);
+            panel4.Controls.Add(dataGridView1);
+            panel4.Location = new Point(0, 83);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(769, 287);
+            panel4.TabIndex = 4;
+            panel4.Visible = false;
             // 
-            // label1
+            // dataGridView1
             // 
-            label1.Anchor = AnchorStyles.None;
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = Color.SteelBlue;
-            label1.Location = new Point(284, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(231, 32);
-            label1.TabIndex = 8;
-            label1.Text = "ADD Payment Detail";
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            dataGridView1.BackgroundColor = SystemColors.ControlLightLight;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(-4, 25);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(776, 274);
+            dataGridView1.TabIndex = 0;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = Color.Green;
+            label4.Location = new Point(125, 7);
+            label4.Name = "label4";
+            label4.Size = new Size(86, 15);
+            label4.TabIndex = 10;
+            label4.Text = "Patient Name:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = Color.Green;
+            label5.Location = new Point(304, 7);
+            label5.Name = "label5";
+            label5.Size = new Size(46, 15);
+            label5.TabIndex = 10;
+            label5.Text = "Bill No:";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label12.ForeColor = Color.Green;
+            label12.Location = new Point(34, 7);
+            label12.Name = "label12";
+            label12.Size = new Size(86, 15);
+            label12.TabIndex = 11;
+            label12.Text = "Patient Name:";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label13.ForeColor = Color.Green;
+            label13.Location = new Point(252, 7);
+            label13.Name = "label13";
+            label13.Size = new Size(46, 15);
+            label13.TabIndex = 12;
+            label13.Text = "Bill No:";
+            // 
+            // tabPage3
+            // 
+            tabPage3.BackColor = Color.LightSteelBlue;
+            tabPage3.Controls.Add(panel4);
+            tabPage3.Controls.Add(groupBox4);
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(768, 378);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Payment Reports";
+            tabPage3.Click += tabPage3_Click;
             // 
             // Payment
             // 
@@ -901,12 +933,12 @@
             panel13.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            tabPage3.ResumeLayout(false);
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            groupBox4.ResumeLayout(false);
-            groupBox4.PerformLayout();
+            tabPage3.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -921,13 +953,6 @@
         private Button button3;
         private ComboBox comboBox1;
         private Label label6;
-        private TabPage tabPage3;
-        private GroupBox groupBox4;
-        private Label label39;
-        private Button button4;
-        private Button button5;
-        private ComboBox comboBox6;
-        private Label label40;
         private Panel panel8;
         private Panel panel12;
         private Label label38;
@@ -976,15 +1001,24 @@
         private Label label36;
         private Label label37;
         private Panel panel7;
-        private Panel panel4;
         private Label label1;
-        private Label label5;
-        private Label label4;
-        private DataGridView dataGridView1;
-        private TextBox textBox5;
         private Label label11;
         private Label label10;
         private Label label9;
         private Label label8;
+        private TabPage tabPage3;
+        private Panel panel4;
+        private Label label13;
+        private Label label12;
+        private Label label5;
+        private Label label4;
+        private DataGridView dataGridView1;
+        private GroupBox groupBox4;
+        private TextBox textBox5;
+        private Label label39;
+        private Button button4;
+        private Button button5;
+        private ComboBox comboBox6;
+        private Label label40;
     }
 }

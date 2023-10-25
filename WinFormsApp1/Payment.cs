@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace WinFormsApp1
         DataBaseConnector connector = new DataBaseConnector();
         private List<string> paymentMethod = new List<string> { "CHECK", "CASH" };
         public int PatientID { get; set; }
+        public int PatiendID__REPORTS { get; set; }
         public Payment()
         {
             InitializeComponent();
@@ -28,32 +30,32 @@ namespace WinFormsApp1
             comboBox3.DataSource = paymentMethod;
         }
 
-        private void ShowPatientDetails()
+        private void ShowPatientDetails(string patientName, string mobile)
         {
             try
             {
                 connector.connection.Open();
 
-                string query = "SELECT * FROM patients";
+                string query = "SELECT * FROM patients WHERE PatientName=@PatientName OR Mobile=@Mobile";
                 MySqlCommand command = new MySqlCommand(query, connector.connection);
+                command.Parameters.AddWithValue("@PatientName", patientName);
+                command.Parameters.AddWithValue("@Mobile", mobile);
+
                 MySqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    if (comboBox1.SelectedItem.ToString() == reader["PatientName"].ToString())
-                    {
-                        label59.Text = reader["PatientName"].ToString();
-                        label58.Text = reader["Mobile"].ToString();
-                        label57.Text = reader["Address"].ToString();
-                        label56.Text = reader["City"].ToString();
-                        label9.Text = reader["Pincode"].ToString();
-                        label54.Text = reader["ReferByDoctor"].ToString();
-                        label53.Text = reader["Disease"].ToString();
-                        label52.Text = reader["HandleByDoctor"].ToString();
-                        label51.Text = reader["RoomType"].ToString();
-                        label11.Text = reader["EstimatedBill"].ToString();
-                        PatientID = (int)reader["PatientID"];
-                    }
+                    label59.Text = reader["PatientName"].ToString();
+                    label58.Text = reader["Mobile"].ToString();
+                    label57.Text = reader["Address"].ToString();
+                    label56.Text = reader["City"].ToString();
+                    label9.Text = reader["Pincode"].ToString();
+                    label54.Text = reader["ReferByDoctor"].ToString();
+                    label53.Text = reader["Disease"].ToString();
+                    label52.Text = reader["HandleByDoctor"].ToString();
+                    label51.Text = reader["RoomType"].ToString();
+                    label11.Text = reader["EstimatedBill"].ToString();
+                    PatientID = (int)reader["PatientID"];
                 }
             }
             catch (Exception ex)
@@ -76,7 +78,7 @@ namespace WinFormsApp1
                 MySqlCommand command = new MySqlCommand(query, connector.connection);
                 command.Parameters.AddWithValue("@PatientID", PatientID);
                 MySqlDataReader reader = command.ExecuteReader();
-                
+
 
                 while (reader.Read())
                 {
@@ -108,14 +110,17 @@ namespace WinFormsApp1
             {
                 connector.connection.Open();
 
-                string query = "SELECT PatientName FROM patients";
+                string query = "SELECT PatientName, discharge FROM patients";
                 MySqlCommand command = new MySqlCommand(query, connector.connection);
                 MySqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    comboBox1.Items.Add(reader["PatientName"].ToString());
                     comboBox6.Items.Add(reader["PatientName"].ToString());
+                    if ((bool)reader["discharge"] == false)
+                    {
+                        comboBox1.Items.Add(reader["PatientName"].ToString());
+                    }
                 }
 
             }
@@ -174,7 +179,8 @@ namespace WinFormsApp1
                 if (rowsAffected > 0)
                 {
                     MessageBox.Show("Paid bill have been updated " + amount);
-                } else
+                }
+                else
                 {
                     MessageBox.Show("Error has been occured.");
                 }
@@ -189,12 +195,60 @@ namespace WinFormsApp1
             }
         }
 
+        private void dataGridView__Fill()
+        {
+            try
+            {
+                connector.connection.Open();
+                string query = "SELECT * FROM payments WHERE PatientID=@PatientID";
+                MySqlCommand command = new MySqlCommand(query, connector.connection);
+                command.Parameters.AddWithValue("@PatientID", PatiendID__REPORTS);
+
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                {
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dataGridView1.DataSource = dataTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error has been occured " + ex);
+            }
+            finally { connector.connection.Close(); }
+        }
+
+        private void dataGridView__Fill__BillNo__PatientName(string patientName, int billNo)
+        {
+            try
+            {
+                connector.connection.Open();
+                string query = "SELECT PatientName, PatientID FROM patients WHERE PatientName=@PatientName";
+                MySqlCommand command = new MySqlCommand(query, connector.connection);
+                command.Parameters.AddWithValue("@PatientName", patientName);
+                command.Parameters.AddWithValue("@PatientID", billNo);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    label4.Text = reader["PatientName"].ToString();
+                    label5.Text = reader["PatientID"].ToString();
+                    PatiendID__REPORTS = (int)reader["PatientID"];
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error has been occured " + ex);
+            }
+            finally { connector.connection.Close(); }
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex != -1)
+            if (comboBox1.SelectedIndex != -1 || textBox1.Text != null)
             {
                 panel8.Visible = true;
-                ShowPatientDetails();
+                ShowPatientDetails(comboBox1.Text, textBox1.Text);
                 ShowPatientBills();
             }
             else
@@ -224,6 +278,22 @@ namespace WinFormsApp1
                     MessageBox.Show("You must fill require field");
                 }
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (comboBox6.SelectedIndex != -1)
+            {
+                panel4.Visible = true;
+                dataGridView__Fill__BillNo__PatientName(comboBox6.Text, PatiendID__REPORTS);
+                dataGridView__Fill();
+
+            }
+        }
+
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
